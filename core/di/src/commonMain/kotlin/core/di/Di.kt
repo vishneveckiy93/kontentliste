@@ -2,8 +2,6 @@ package core.di
 
 import AccountsApi
 import TurnoversApi
-import org.koin.core.KoinApplication
-import org.koin.core.context.KoinContext
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -17,9 +15,9 @@ val networkModule: Module = module {
 
 object Di {
     private var started = false
-    fun init(extra: List<Module> = emptyList()): KoinApplication? {
-        if (started) return null
+    fun init() {
+        if (started) return
         started = true
-        return startKoin { modules(listOf(networkModule) + extra) }
+        startKoin { modules(listOf(networkModule)) }
     }
 }

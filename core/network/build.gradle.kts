@@ -6,7 +6,7 @@ kotlin {
             implementation(libs.coroutines.core)
             implementation(libs.kotlinx.serialization.json)
 
-            implementation(libs.ktor.client.core)
+            api(libs.ktor.client.core)
             implementation(libs.ktor.client.contentnegotiation)
             implementation(libs.ktor.serialization.json)
             implementation(libs.ktor.client.logging)
