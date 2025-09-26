@@ -36,3 +36,5 @@ include(":core:designsystem",
     ":core:network",
     ":core:di"
 )
+
+include(":feature:accounts-list")
