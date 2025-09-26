@@ -15,4 +15,5 @@ dependencies {
     implementation(libs.gradlePlugin.android)
     implementation(libs.gradlePlugin.compose)
     implementation(libs.gradlePlugin.compose.compiler)
+    implementation(libs.gradlePlugin.serialization)
 }
