@@ -16,7 +16,8 @@ kotlin {
         iosMain.dependencies { implementation(libs.ktor.client.darwin) }
 
         commonTest.dependencies {
-            implementation(kotlin("test"))
+            implementation(libs.kotlin.test)
+            implementation(libs.coroutines.test)
             implementation(libs.ktor.client.mock)
         }
     }
