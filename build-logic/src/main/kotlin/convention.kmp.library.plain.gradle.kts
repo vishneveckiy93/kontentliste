@@ -20,9 +20,8 @@ kotlin {
 }
 
 android {
-    // авто-namespace по имени проекта и пути модуля
     namespace = "com.cherryyar.kontenliste" + project.path.replace(':', '.')
-    compileSdk = 35
+    compileSdk = 36
     defaultConfig { minSdk = 24 }
     packaging.resources.excludes += "/META-INF/{AL2.0,LGPL2.1}"
 }

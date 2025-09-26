@@ -21,6 +21,7 @@ captures/
 
 # Kotlin / misc
 .kotlinc/
+.kotlin/
 
 # iOS / Xcode
 iosApp/Pods/
