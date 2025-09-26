@@ -38,6 +38,7 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtimeCompose)
 
             implementation(project(":core:designsystem"))
+            implementation(project(":core:di"))
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
