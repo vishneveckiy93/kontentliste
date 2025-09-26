@@ -12,7 +12,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.cherryyar.kontenliste" + project.path.replace(':', '.')
+    namespace = "com.cherryyar.kontentliste" + project.name.replace('-', '_')
     compileSdk = 36
     defaultConfig { minSdk = 24 }
     packaging.resources.excludes += "/META-INF/{AL2.0,LGPL2.1}"

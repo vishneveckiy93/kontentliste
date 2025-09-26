@@ -23,7 +23,14 @@ fun provideHttpClient(): HttpClient =
 /* --- temporarily: DTO + API in core:network (we'll move it to features later) --- */
 
 @Serializable
-data class AccountDto(val id: String, val name: String, val iban: String)
+data class AccountDto(
+    val id: Int,
+    val name: String,
+    val ownerName: String,
+    val balance: Double,
+    val currency: String,
+    val iban: String
+)
 
 @Serializable
 data class TurnoverDto(
