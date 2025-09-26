@@ -18,7 +18,7 @@ class AccountsApiTest {
         val engine = MockEngine { req ->
             if(req.url.fullPath.endsWith("/accounts")) {
                 respond(
-                    content = """[{"id":"1","name":"Main","iban":"DE0012345678"}]""",
+                    content = """[{ "id": 1, "name": "Checking Account", "ownerName": "John Doe", "balance": 1250.75, "currency": "${'$'}", "iban": "US12345678901234567890" }]""",
                     headers = headersOf(HttpHeaders.ContentType, "application/json")
                 )
             } else respondBadRequest()

@@ -1,4 +1,4 @@
-package feature.accounts.domain
+package feature.accounts.domain.models
 
 data class Account(
     val id: Int,
