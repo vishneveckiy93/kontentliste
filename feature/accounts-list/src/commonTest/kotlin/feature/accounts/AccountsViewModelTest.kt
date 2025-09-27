@@ -5,7 +5,6 @@ import feature.accounts.domain.models.Account
 import feature.accounts.presentation.AccountsEvent
 import feature.accounts.presentation.AccountsViewModel
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertNotNull
@@ -31,7 +30,7 @@ class AccountsViewModelTest {
     @Test
     fun refresh_emits_items() = runTest {
         val vm = AccountsViewModel(FakeOk(), this)
-        vm.onEvent(AccountsEvent.Refresh)
+        vm.onEvent(AccountsEvent.Load)
         val state = vm.state.first { state -> !state.isLoading }
         assertTrue(state.items.isNotEmpty())
     }
@@ -39,7 +38,7 @@ class AccountsViewModelTest {
     @Test
     fun refresh_sets_error() = runTest {
         val vm = AccountsViewModel(FakeFail(), this)
-        vm.onEvent(AccountsEvent.Refresh)
+        vm.onEvent(AccountsEvent.Load)
         val state = vm.state.first { !it.isLoading }
         assertTrue(state.items.isEmpty())
         assertNotNull(state.error)

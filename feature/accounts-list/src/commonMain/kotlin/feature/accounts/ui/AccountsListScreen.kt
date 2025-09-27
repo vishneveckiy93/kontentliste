@@ -15,17 +15,23 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import feature.accounts.presentation.AccountsEvent
 import feature.accounts.presentation.AccountsViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AccountsListScreen(vm: AccountsViewModel) {
+
+    LaunchedEffect(vm) { vm.onEvent(AccountsEvent.Load) }
+
     val state by vm.state.collectAsState()
+
     Scaffold(topBar = { TopAppBar(title = { Text("Accounts") }) }) { padding ->
        Box(Modifier.fillMaxSize().padding(padding)) {
            when {

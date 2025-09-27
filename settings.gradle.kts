@@ -34,7 +34,8 @@ include(":composeApp")
 
 include(":core:designsystem",
     ":core:network",
-    ":core:di"
+    ":core:di",
+    ":core:navigation"
 )
 
 include(":feature:accounts-list")

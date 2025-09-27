@@ -5,11 +5,12 @@ plugins {
 kotlin {
     sourceSets {
         commonMain.dependencies {
-                implementation(project(":core:network"))        // for now take API/DTO from here
+                implementation(project(":core:network"))
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material3)
                 implementation(libs.koin.core)
+                implementation(libs.androidx.lifecycle.viewmodelCompose)
                 implementation(libs.ktor.serialization.json)
         }
         commonTest.dependencies {

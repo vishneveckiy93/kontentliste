@@ -26,7 +26,6 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
-            implementation(libs.koin.core)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -41,7 +40,7 @@ kotlin {
 
             implementation(project(":core:designsystem"))
             implementation(project(":core:di"))
-            implementation(libs.koin.core)
+            implementation(project(":core:navigation"))
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import feature.accounts.domain.AccountsRepository
 import feature.accounts.domain.models.Account
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -19,7 +18,7 @@ data class AccountsState(
 )
 
 sealed interface AccountsEvent {
-    data object Refresh : AccountsEvent
+    data object Load : AccountsEvent
 }
 
 class AccountsViewModel(): ViewModel(), KoinComponent {
@@ -31,11 +30,13 @@ class AccountsViewModel(): ViewModel(), KoinComponent {
 
     fun onEvent(event: AccountsEvent) {
         when (event) {
-            AccountsEvent.Refresh -> refresh()
+            AccountsEvent.Load -> refresh()
         }
     }
 
-    private fun refresh() {
+    fun load() {
+        if (_state.value.isLoading) return
+
         _state.update { it.copy(isLoading = true, error = null) }
         viewModelScope.launch {
             runCatching { repo.getAccounts() }
@@ -43,6 +44,8 @@ class AccountsViewModel(): ViewModel(), KoinComponent {
                 .onFailure { e -> _state.update { it.copy(isLoading = false, error = e.message) } }
         }
     }
+
+    private fun refresh() = load()
 
 
 }

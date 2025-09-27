@@ -5,8 +5,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import feature.accounts.presentation.AccountsViewModel
-import navigation.AccountDetailRoute
-import navigation.AccountsListRoute
+import feature.accounts.ui.AccountsListScreen
+import routes.AccountDetailRoute
+import routes.AccountsListRoute
 
 @Composable
 fun AppNavHost() {
@@ -15,6 +16,7 @@ fun AppNavHost() {
     NavHost(navController = nav, startDestination = AccountsListRoute) {
         composable<AccountsListRoute> {
             val vm: AccountsViewModel = viewModel { AccountsViewModel() }
+            AccountsListScreen(vm = vm)
         }
 
         composable<AccountDetailRoute> { backStackEntry ->
