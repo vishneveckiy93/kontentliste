@@ -10,6 +10,7 @@ kotlin {
                 implementation(compose.foundation)
                 implementation(compose.material3)
                 implementation(libs.koin.core)
+                implementation(libs.ktor.serialization.json)
         }
         commonTest.dependencies {
                 implementation(libs.kotlin.test)

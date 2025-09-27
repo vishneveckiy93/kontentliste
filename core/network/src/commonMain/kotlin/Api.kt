@@ -1,12 +1,12 @@
 import io.ktor.client.HttpClient
-import io.ktor.client.call.body
 import io.ktor.client.engine.HttpClientEngineFactory
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.LogLevel
+import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
-import io.ktor.client.request.get
+import io.ktor.client.plugins.logging.SIMPLE
 import io.ktor.serialization.kotlinx.json.json
-import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
 
 object ApiConfig {
     const val BASE_URL = "https://testapi.io/api/jpt/v1"
@@ -16,21 +16,16 @@ expect fun defaultEngineFactory(): HttpClientEngineFactory<*>
 
 fun provideHttpClient(): HttpClient =
     HttpClient(defaultEngineFactory()) {
-        install(ContentNegotiation) { json() }
-        install(Logging) { level = LogLevel.INFO }
+        install(ContentNegotiation) {
+            json(Json {
+                isLenient = true
+                ignoreUnknownKeys = true
+                prettyPrint = true
+            })
+        }
+        install(Logging) {
+            logger = Logger.SIMPLE
+            level = LogLevel.ALL
+        }
     }
 
-/* --- temporarily: DTO + API in core:network (we'll move it to features later) --- */
-
-@Serializable
-data class TurnoverDto(
-    val id: String,
-    val accountId: String,
-    val amount: Double,
-    val bookedAt: String
-)
-
-class TurnoversApi(private val client: HttpClient) {
-    suspend fun getTurnovers(): List<TurnoverDto> =
-        client.get("${ApiConfig.BASE_URL}/turnovers").body()
-}
