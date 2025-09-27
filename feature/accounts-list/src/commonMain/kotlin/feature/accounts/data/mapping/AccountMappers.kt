@@ -1,4 +1,4 @@
-package feature.accounts.data
+package feature.accounts.data.mapping
 
 import AccountDto
 import feature.accounts.domain.models.Account

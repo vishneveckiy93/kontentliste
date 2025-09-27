@@ -1,7 +1,7 @@
 package feature.accounts
 
 import AccountDto
-import feature.accounts.data.toDomain
+import feature.accounts.data.mapping.toDomain
 import feature.accounts.domain.models.Account
 import kotlin.test.Test
 import kotlin.test.assertEquals
