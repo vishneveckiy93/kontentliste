@@ -1,6 +1,6 @@
 package feature.accounts.data.mapping
 
-import AccountDto
+import feature.accounts.data.remote.dto.AccountDto
 import feature.accounts.domain.models.Account
 
 internal fun AccountDto.toDomain() = Account(

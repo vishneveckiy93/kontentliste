@@ -1,4 +1,6 @@
-plugins { id("convention.kmp.library.compose") }
+plugins {
+    id("convention.kmp.library.compose")
+}
 
 kotlin {
     sourceSets {
@@ -7,12 +9,14 @@ kotlin {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material3)
-                api(libs.koin.core)
+                implementation(libs.koin.core)
         }
         commonTest.dependencies {
                 implementation(libs.kotlin.test)
                 implementation(libs.coroutines.test)
                 implementation(libs.ktor.client.mock)
+                implementation(libs.ktor.client.contentnegotiation)
+                implementation(libs.ktor.serialization.json)
         }
     }
 }

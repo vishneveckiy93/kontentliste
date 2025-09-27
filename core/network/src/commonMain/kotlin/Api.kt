@@ -23,27 +23,12 @@ fun provideHttpClient(): HttpClient =
 /* --- temporarily: DTO + API in core:network (we'll move it to features later) --- */
 
 @Serializable
-data class AccountDto(
-    val id: Int,
-    val name: String,
-    val ownerName: String,
-    val balance: Double,
-    val currency: String,
-    val iban: String
-)
-
-@Serializable
 data class TurnoverDto(
     val id: String,
     val accountId: String,
     val amount: Double,
     val bookedAt: String
 )
-
-class AccountsApi(private val client: HttpClient) {
-    suspend fun getAccounts(): List<AccountDto> =
-        client.get("${ApiConfig.BASE_URL}/accounts").body()
-}
 
 class TurnoversApi(private val client: HttpClient) {
     suspend fun getTurnovers(): List<TurnoverDto> =
