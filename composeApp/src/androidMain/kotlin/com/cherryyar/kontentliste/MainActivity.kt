@@ -10,6 +10,7 @@ import app.App
 import app.di.AppDI
 import core.di.Di
 import feature.accounts.domain.AccountsRepository
+import feature.accounts.presentation.AccountsViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -25,7 +26,7 @@ class MainActivity : ComponentActivity() {
         AppDI.init()
 
         val repo: AccountsRepository = getKoin().get()
-        val vm = AccountsViewModel(repo, acitivityScope)
+        val vm = AccountsViewModel(repo, activityScope)
         setContent {
             App(vm)
         }
