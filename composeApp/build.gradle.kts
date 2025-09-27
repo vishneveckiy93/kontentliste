@@ -41,7 +41,6 @@ kotlin {
 
             implementation(project(":core:designsystem"))
             implementation(project(":core:di"))
-            implementation(project(":feature:accounts-list"))
             implementation(libs.koin.core)
         }
         commonTest.dependencies {

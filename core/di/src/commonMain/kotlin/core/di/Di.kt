@@ -1,5 +1,6 @@
 package core.di
 
+import feature.accounts.di.accountsModule
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -14,6 +15,6 @@ object Di {
     fun init() {
         if (started) return
         started = true
-        startKoin { modules(listOf(networkModule)) }
+        startKoin { modules(listOf(networkModule, accountsModule())) }
     }
 }

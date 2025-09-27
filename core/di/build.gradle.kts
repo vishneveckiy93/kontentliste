@@ -5,6 +5,7 @@ kotlin {
         commonMain.dependencies {
             implementation(libs.koin.core)
             implementation(project(":core:network"))
+            implementation(project(":feature:accounts-list"))
         }
     }
 }

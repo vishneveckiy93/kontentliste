@@ -7,7 +7,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import app.App
-import app.di.AppDI
 import core.di.Di
 import feature.accounts.domain.AccountsRepository
 import feature.accounts.presentation.AccountsViewModel
@@ -18,22 +17,13 @@ import kotlinx.coroutines.cancel
 import org.koin.java.KoinJavaComponent.getKoin
 
 class MainActivity : ComponentActivity() {
-    private val activityScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
-        AppDI.init()
 
-        val repo: AccountsRepository = getKoin().get()
-        val vm = AccountsViewModel(repo, activityScope)
         setContent {
-            App(vm)
+            App()
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        activityScope.cancel()
     }
 }
