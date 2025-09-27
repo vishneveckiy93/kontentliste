@@ -1,6 +1,7 @@
 package feature.accounts
 
 import feature.accounts.data.remote.api.AccountsApi
+import feature.accounts.data.repository.AccountsRepositoryImpl
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
