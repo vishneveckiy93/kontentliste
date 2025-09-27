@@ -1,5 +1,6 @@
 package app
 
+import AppNavHost
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -11,8 +12,4 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 @Preview
-fun App() {
-    val vm: AccountsViewModel = viewModel { AccountsViewModel() }
-    LaunchedEffect(Unit) { vm.onEvent(AccountsEvent.Refresh) }
-    AccountsListScreen(vm)
-}
+fun App() = AppNavHost()
