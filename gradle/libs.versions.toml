@@ -19,6 +19,8 @@ coroutines = "1.10.2"
 
 koin = "4.1.1"
 
+navigation = "2.9.0"
+
 [libraries]
 
 # Gradle
@@ -44,6 +46,9 @@ junit = { module = "junit:junit", version.ref = "junit" }
 androidx-testExt-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-testExt" }
 androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "androidx-espresso" }
 coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
+
+# Navigation
+navigation-compose = { module="org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigation" }
 
 # KotlinX
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
