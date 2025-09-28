@@ -40,3 +40,5 @@ include(":core:designsystem",
 
 include(":feature:accounts-list")
 include(":feature:turnovers")
+
+include(":testing:testkit")
