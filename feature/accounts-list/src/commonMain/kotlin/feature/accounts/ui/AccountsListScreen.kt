@@ -1,6 +1,7 @@
 package feature.accounts.ui
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -42,17 +43,13 @@ fun AccountsListScreen(
            when {
                state.isLoading -> CircularProgressIndicator(Modifier.align(Alignment.Center))
                state.error != null -> Text("Error: ${state.error}", Modifier.align(Alignment.Center))
-               else -> LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(16.dp)) {
+               else -> LazyColumn(
+                   Modifier.fillMaxSize(),
+                   contentPadding = PaddingValues(16.dp),
+                   verticalArrangement = Arrangement.spacedBy(12.dp)
+               ) {
                    items(state.items) { a ->
-                       Text(
-                           "${a.name} • ${a.iban}",
-                           style = MaterialTheme.typography.bodyLarge,
-                           modifier = Modifier
-                               .fillMaxWidth()
-                               .padding(vertical = 8.dp)
-                               .clickable { onAccountClick(a.id)}
-                           )
-                       Spacer(Modifier.height(12.dp))
+                       AccountCard(a, onClick = onAccountClick)
                    }
                }
            }
