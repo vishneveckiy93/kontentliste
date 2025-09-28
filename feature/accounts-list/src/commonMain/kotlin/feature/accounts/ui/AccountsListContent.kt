@@ -13,6 +13,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import feature.accounts.presentation.AccountsState
@@ -26,7 +27,7 @@ fun AccountListContent(
     Scaffold(topBar = { TopAppBar(title = { Text("Accounts") }) }) { padding ->
         Box(Modifier.fillMaxSize().padding(padding)) {
             when {
-                state.isLoading -> CircularProgressIndicator(Modifier.padding(24.dp))
+                state.isLoading -> CircularProgressIndicator(Modifier.align(Alignment.Center))
                 state.error != null -> Text("Error: ${state.error}", Modifier.padding(24.dp))
                 else -> LazyColumn(
                     Modifier.fillMaxSize(),

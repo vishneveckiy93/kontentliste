@@ -4,16 +4,13 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import app.ui.SplashScreen
-import feature.accounts.presentation.AccountsViewModel
-import feature.accounts.ui.AccountsListScreen
-import feature.turnovers.presentation.TurnoversViewModel
-import feature.turnovers.ui.TurnoversScreen
+import feature.accounts.ui.AccountsListRouteScreen
+import feature.turnovers.ui.TurnoversRouteScreen
 import routes.AccountTurnoversRoute
 import routes.AccountsListRoute
 import routes.SplashRoute
@@ -47,8 +44,7 @@ fun AppNavHost() {
                 fadeOut(animationSpec = tween(250))
             }
         ) {
-            val vm: AccountsViewModel = viewModel { AccountsViewModel() }
-            AccountsListScreen(vm = vm) { id ->
+            AccountsListRouteScreen { id ->
                 nav.navigate(AccountTurnoversRoute(id))
             }
         }
@@ -56,8 +52,7 @@ fun AppNavHost() {
         composable<AccountTurnoversRoute> { backStackEntry ->
             val args: AccountTurnoversRoute = backStackEntry.toRoute()
 
-            val vm: TurnoversViewModel = viewModel { TurnoversViewModel(accountId = args.id) }
-            TurnoversScreen(vm)
+            TurnoversRouteScreen(args.id)
         }
     }
 }
