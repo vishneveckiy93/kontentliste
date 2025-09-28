@@ -37,6 +37,6 @@ fun TurnoversRouteScreen(accountId: Int) {
             )
         }
     ) {
-        TurnoversContent(state = state, onRefresh = vm::refresh)
+        TurnoversContent(state = state)
     }
 }

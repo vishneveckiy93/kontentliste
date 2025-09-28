@@ -19,8 +19,7 @@ import feature.turnovers.presentation.TurnoversState
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TurnoversContent(
-    state: TurnoversState,
-    onRefresh: () -> Unit
+    state: TurnoversState
 ) {
     Scaffold(topBar = { TopAppBar(title = { Text("Turnovers") }) }) { padding ->
         Box(Modifier.fillMaxSize().padding(padding)) {
