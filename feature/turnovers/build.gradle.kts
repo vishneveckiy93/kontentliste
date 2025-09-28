@@ -13,6 +13,7 @@ kotlin {
             implementation(libs.koin.core)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.ktor.serialization.json)
+            implementation(libs.kotlinx.datetime)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

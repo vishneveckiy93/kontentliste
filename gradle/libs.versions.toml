@@ -21,6 +21,8 @@ koin = "4.1.1"
 
 navigation = "2.9.0"
 
+datetime = "0.7.1"
+
 [libraries]
 
 # Gradle
@@ -52,6 +54,7 @@ navigation-compose = { module="org.jetbrains.androidx.navigation:navigation-comp
 
 # KotlinX
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
+kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "datetime" }
 
 # Koin
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
