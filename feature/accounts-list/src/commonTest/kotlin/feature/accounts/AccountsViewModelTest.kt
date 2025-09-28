@@ -2,12 +2,10 @@ package feature.accounts
 
 import feature.accounts.domain.AccountsRepository
 import feature.accounts.domain.models.Account
-import feature.accounts.presentation.AccountsEvent
 import feature.accounts.presentation.AccountsViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin

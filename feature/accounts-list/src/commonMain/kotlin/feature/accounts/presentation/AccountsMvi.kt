@@ -22,10 +22,6 @@ data class AccountsState(
     val error: String? = null
 )
 
-sealed interface AccountsEvent {
-    data object Load : AccountsEvent
-}
-
 class AccountsViewModel(): ViewModel(), KoinComponent {
 
     private val repo: AccountsRepository by inject()
@@ -37,7 +33,7 @@ class AccountsViewModel(): ViewModel(), KoinComponent {
         reload
             .flatMapLatest {
                 repo.getAccounts()
-                    .map<List<Account>, AccountsState> { list ->
+                    .map { list ->
                         AccountsState(isLoading = false, items = list, error = null)
                     }
                     .onStart { emit(AccountsState(isLoading = true)) }

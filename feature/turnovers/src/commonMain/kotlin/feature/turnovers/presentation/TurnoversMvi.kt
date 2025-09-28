@@ -6,7 +6,6 @@ import feature.turnovers.domain.TurnoversRepository
 import feature.turnovers.domain.models.Turnover
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
@@ -14,8 +13,6 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
@@ -38,7 +35,7 @@ class TurnoversViewModel(
         reload
             .flatMapLatest {
                 repo.getForAccount(accountId)
-                    .map<List<Turnover>, TurnoversState> { list ->
+                    .map { list ->
                         TurnoversState(isLoading = false, items = list, error = null)
                     }
                     .onStart { emit(TurnoversState(isLoading = true)) }
