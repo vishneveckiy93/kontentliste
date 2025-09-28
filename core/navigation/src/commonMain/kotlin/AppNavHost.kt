@@ -12,7 +12,9 @@ import androidx.navigation.toRoute
 import app.ui.SplashScreen
 import feature.accounts.presentation.AccountsViewModel
 import feature.accounts.ui.AccountsListScreen
-import routes.AccountDetailRoute
+import feature.turnovers.presentation.TurnoversViewModel
+import feature.turnovers.ui.TurnoversScreen
+import routes.AccountTurnoversRoute
 import routes.AccountsListRoute
 import routes.SplashRoute
 
@@ -46,12 +48,16 @@ fun AppNavHost() {
             }
         ) {
             val vm: AccountsViewModel = viewModel { AccountsViewModel() }
-            AccountsListScreen(vm = vm)
+            AccountsListScreen(vm = vm) { id ->
+                nav.navigate(AccountTurnoversRoute(id))
+            }
         }
 
-        composable<AccountDetailRoute> { backStackEntry ->
-            val args: AccountsListRoute = backStackEntry.toRoute()
-            // TODO: AccountDetailsScreen(args.id)
+        composable<AccountTurnoversRoute> { backStackEntry ->
+            val args: AccountTurnoversRoute = backStackEntry.toRoute()
+
+            val vm: TurnoversViewModel = viewModel { TurnoversViewModel(accountId = args.id) }
+            TurnoversScreen(vm)
         }
     }
 }

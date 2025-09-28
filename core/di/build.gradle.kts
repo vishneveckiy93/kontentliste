@@ -6,6 +6,7 @@ kotlin {
             implementation(libs.koin.core)
             implementation(project(":core:network"))
             implementation(project(":feature:accounts-list"))
+            implementation(project(":feature:turnovers"))
         }
     }
 }

@@ -11,6 +11,7 @@ kotlin {
                 implementation(libs.navigation.compose)
                 implementation(compose.animation)
                 implementation(project(":feature:accounts-list"))
+                implementation(project(":feature:turnovers"))
             }
         }
     }

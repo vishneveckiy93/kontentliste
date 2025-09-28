@@ -4,4 +4,4 @@ import kotlinx.serialization.Serializable
 
 @Serializable object SplashRoute
 @Serializable object AccountsListRoute
-@Serializable data class AccountDetailRoute(val id: Int)
+@Serializable data class AccountTurnoversRoute(val id: Int)

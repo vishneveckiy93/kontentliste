@@ -1,9 +1,11 @@
 package feature.accounts.ui
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -26,7 +28,10 @@ import feature.accounts.presentation.AccountsViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AccountsListScreen(vm: AccountsViewModel) {
+fun AccountsListScreen(
+    vm: AccountsViewModel,
+    onAccountClick: (id: Int) -> Unit = {}
+) {
 
     LaunchedEffect(vm) { vm.onEvent(AccountsEvent.Load) }
 
@@ -39,7 +44,14 @@ fun AccountsListScreen(vm: AccountsViewModel) {
                state.error != null -> Text("Error: ${state.error}", Modifier.align(Alignment.Center))
                else -> LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(16.dp)) {
                    items(state.items) { a ->
-                       Text("${a.name} • ${a.iban}", style = MaterialTheme.typography.bodyLarge)
+                       Text(
+                           "${a.name} • ${a.iban}",
+                           style = MaterialTheme.typography.bodyLarge,
+                           modifier = Modifier
+                               .fillMaxWidth()
+                               .padding(vertical = 8.dp)
+                               .clickable { onAccountClick(a.id)}
+                           )
                        Spacer(Modifier.height(12.dp))
                    }
                }
