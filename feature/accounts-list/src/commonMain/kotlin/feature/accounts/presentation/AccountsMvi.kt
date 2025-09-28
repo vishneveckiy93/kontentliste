@@ -30,7 +30,7 @@ class AccountsViewModel(): ViewModel(), KoinComponent {
 
     fun onEvent(event: AccountsEvent) {
         when (event) {
-            AccountsEvent.Load -> refresh()
+            AccountsEvent.Load -> load()
         }
     }
 
@@ -44,8 +44,6 @@ class AccountsViewModel(): ViewModel(), KoinComponent {
                 .onFailure { e -> _state.update { it.copy(isLoading = false, error = e.message) } }
         }
     }
-
-    private fun refresh() = load()
 
 
 }
