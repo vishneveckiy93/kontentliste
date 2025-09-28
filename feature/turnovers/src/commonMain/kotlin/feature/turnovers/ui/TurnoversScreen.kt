@@ -1,5 +1,6 @@
 package feature.turnovers.ui
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -45,11 +46,11 @@ fun TurnoversScreen(vm: TurnoversViewModel) {
                     }
                     else -> LazyColumn(
                         modifier = Modifier.fillMaxSize().padding(top = (topInsetPx / 2).dp),
-                        contentPadding = PaddingValues(16.dp)
+                        contentPadding = PaddingValues(16.dp),
+                        verticalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
                         items(state.items) { t ->
-                            Text("${t.timestamp} • ${t.amount}", style = MaterialTheme.typography.bodyLarge)
-                            Spacer(Modifier.height(12.dp))
+                            TurnoverItemCard(t)
                         }
                     }
                 }
