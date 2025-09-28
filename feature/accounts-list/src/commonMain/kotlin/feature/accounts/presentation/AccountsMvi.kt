@@ -46,7 +46,7 @@ class AccountsViewModel(): ViewModel(), KoinComponent {
             .stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(5000),
-                initialValue = AccountsState()
+                initialValue = AccountsState(isLoading = true)
             )
 
     init {

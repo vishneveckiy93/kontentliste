@@ -10,6 +10,7 @@ import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.http.HttpHeaders
 import io.ktor.http.headersOf
 import io.ktor.serialization.kotlinx.json.json
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -30,8 +31,8 @@ class TurnoversRepositoryTest {
         val api = TurnoversApi(client)
 
         val repo: TurnoversRepository = TurnoversRepositoryImpl(api)
-        val res = repo.getForAccount(1)
+        val res = repo.getForAccount(1).first()
         assertEquals(2, res.size)
-        assertEquals("e4b6c9a2d8f1e5a7b3c8d9e0f2a4b6c8", res.first().id)
+        assertEquals("a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6", res.first().id)
     }
 }

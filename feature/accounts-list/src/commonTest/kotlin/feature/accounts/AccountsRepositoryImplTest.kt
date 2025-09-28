@@ -11,6 +11,7 @@ import io.ktor.http.HttpHeaders
 import io.ktor.http.fullPath
 import io.ktor.http.headersOf
 import io.ktor.serialization.kotlinx.json.json
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -30,7 +31,7 @@ class AccountsRepositoryImplTest {
         val api  = AccountsApi(client)
 
         val repo = AccountsRepositoryImpl(api)
-        val res = repo.getAccounts()
+        val res = repo.getAccounts().first()
 
         assertEquals("Checking Account", res.first().name)
         assertEquals(1, res.size)

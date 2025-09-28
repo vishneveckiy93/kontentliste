@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import feature.turnovers.domain.TurnoversRepository
 import feature.turnovers.domain.models.Turnover
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -32,6 +33,7 @@ class TurnoversViewModel(
 
     private val reload = MutableSharedFlow<Unit>(replay = 1)
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     val state: StateFlow<TurnoversState> =
         reload
             .flatMapLatest {
@@ -45,7 +47,7 @@ class TurnoversViewModel(
             .stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(5_000),
-                initialValue = TurnoversState()
+                initialValue = TurnoversState(isLoading = true)
             )
 
     init {

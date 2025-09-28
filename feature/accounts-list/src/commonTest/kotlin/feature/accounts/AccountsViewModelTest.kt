@@ -6,6 +6,7 @@ import feature.accounts.presentation.AccountsEvent
 import feature.accounts.presentation.AccountsViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import org.koin.core.context.startKoin
@@ -20,18 +21,26 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 private class FakeOk : AccountsRepository {
-    override suspend fun getAccounts(): List<Account> = listOf(Account(
-        id = 1,
-        name = "Main",
-        ownerName = "John Doe",
-        balance = 100.0,
-        currency = "EUR",
-        iban = "DE00"
-    ))
+    override suspend fun getAccounts() = flow {
+        emit(
+            listOf(
+                Account(
+                    id = 1,
+                    name = "Checking Account",
+                    ownerName = "John Doe",
+                    balance = 1250.75,
+                    currency = "$",
+                    iban = "US12345678901234567890"
+                )
+            )
+        )
+    }
 }
 
 private class FakeFail : AccountsRepository {
-    override suspend fun getAccounts(): List<Account> = error("boom")
+    override suspend fun getAccounts() = flow<List<Account>> {
+        throw RuntimeException("boom")
+    }
 }
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -53,8 +62,7 @@ class AccountsViewModelTest {
     fun load_success_updates_state() = runTest {
         val vm = AccountsViewModel()
         vm.load()
-        advanceUntilIdle()
-        val s = vm.state.value
+        val s = vm.state.first { !it.isLoading }
         assertTrue(s.items.isNotEmpty())
         assertNull(s.error)
     }
@@ -66,8 +74,7 @@ class AccountsViewModelTest {
 
         val vm = AccountsViewModel()
         vm.load()
-        advanceUntilIdle()
-        val s = vm.state.value
+        val s = vm.state.first { !it.isLoading }
         assertTrue(s.items.isEmpty())
         assertNotNull(s.error)
     }
