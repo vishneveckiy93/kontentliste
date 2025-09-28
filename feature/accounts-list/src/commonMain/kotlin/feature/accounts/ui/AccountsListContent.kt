@@ -24,7 +24,7 @@ fun AccountListContent(
     state: AccountsState,
     onAccountClick: (Int) -> Unit
 ) {
-    Scaffold(topBar = { TopAppBar(title = { Text("Accounts") }) }) { padding ->
+    Scaffold(topBar = { TopAppBar(title = { Text("Konten") }) }) { padding ->
         Box(Modifier.fillMaxSize().padding(padding)) {
             when {
                 state.isLoading -> CircularProgressIndicator(Modifier.align(Alignment.Center))

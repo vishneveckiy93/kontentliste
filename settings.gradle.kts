@@ -30,9 +30,9 @@ dependencyResolutionManagement {
 }
 
 include(":composeApp")
-// Core
 
-include(":core:designsystem",
+// Core
+include(
     ":core:network",
     ":core:di",
     ":core:navigation"
