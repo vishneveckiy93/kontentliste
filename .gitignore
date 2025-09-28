@@ -9,6 +9,8 @@ out/
 *.ipr
 *.iws
 
+.local/
+
 # OS
 .DS_Store
 
