@@ -19,6 +19,8 @@ kotlin {
                 implementation(libs.ktor.client.mock)
                 implementation(libs.ktor.client.contentnegotiation)
                 implementation(libs.ktor.serialization.json)
+                implementation(libs.koin.core)
+                implementation(project(":testing:testkit"))
         }
     }
 }
