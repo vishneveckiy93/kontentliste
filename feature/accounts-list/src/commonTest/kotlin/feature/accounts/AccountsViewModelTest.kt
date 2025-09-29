@@ -19,7 +19,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 private class FakeOk : AccountsRepository {
-    override suspend fun getAccounts() = flow {
+    override fun getAccounts() = flow {
         emit(
             listOf(
                 Account(
@@ -36,7 +36,7 @@ private class FakeOk : AccountsRepository {
 }
 
 private class FakeFail : AccountsRepository {
-    override suspend fun getAccounts() = flow<List<Account>> {
+    override fun getAccounts() = flow<List<Account>> {
         throw RuntimeException("boom")
     }
 }

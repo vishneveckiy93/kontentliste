@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 
 class AccountsRepositoryImpl(private val api: AccountsApi) : AccountsRepository {
-    override suspend fun getAccounts(): Flow<List<Account>> =
+      override fun getAccounts(): Flow<List<Account>> =
         flow { emit(api.getAccounts()) }
             .flowOn(Dispatchers.IO)
             .map { dtos -> dtos.map { it.toDomain() } }

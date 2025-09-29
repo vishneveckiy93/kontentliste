@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 
 class TurnoversRepositoryImpl(private val api: TurnoversApi) : TurnoversRepository {
-    override suspend fun getForAccount(accountId: Int): Flow<List<Turnover>> =
+    override fun getForAccount(accountId: Int): Flow<List<Turnover>> =
         flow { emit(api.getTurnovers()) }
             .flowOn(Dispatchers.IO)
             .map { all ->

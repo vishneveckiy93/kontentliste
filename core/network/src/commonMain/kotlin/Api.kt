@@ -5,6 +5,8 @@ import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.plugins.logging.SIMPLE
+import io.ktor.http.ContentType
+import io.ktor.serialization.kotlinx.KotlinxSerializationConverter
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
@@ -17,11 +19,13 @@ expect fun defaultEngineFactory(): HttpClientEngineFactory<*>
 fun provideHttpClient(): HttpClient =
     HttpClient(defaultEngineFactory()) {
         install(ContentNegotiation) {
-            json(Json {
+            val jsonCfg = Json {
                 isLenient = true
                 ignoreUnknownKeys = true
                 prettyPrint = true
-            })
+            }
+            json(jsonCfg)
+            register(ContentType.Text.Html, KotlinxSerializationConverter(jsonCfg))
         }
         install(Logging) {
             logger = Logger.SIMPLE

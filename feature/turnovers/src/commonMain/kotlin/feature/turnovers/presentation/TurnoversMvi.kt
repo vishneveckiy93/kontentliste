@@ -2,6 +2,7 @@ package feature.turnovers.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import errorhandling.toFriendly
 import feature.turnovers.domain.TurnoversRepository
 import feature.turnovers.domain.models.Turnover
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -39,7 +40,7 @@ class TurnoversViewModel(
                         TurnoversState(isLoading = false, items = list, error = null)
                     }
                     .onStart { emit(TurnoversState(isLoading = true)) }
-                    .catch { e -> emit(TurnoversState(isLoading = false, items = emptyList(), error = e.message)) }
+                    .catch { e -> emit(TurnoversState(isLoading = false, items = emptyList(), error = e.toFriendly())) }
             }
             .stateIn(
                 scope = viewModelScope,

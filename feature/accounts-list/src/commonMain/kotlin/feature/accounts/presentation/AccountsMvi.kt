@@ -2,6 +2,7 @@ package feature.accounts.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import errorhandling.toFriendly
 import feature.accounts.domain.AccountsRepository
 import feature.accounts.domain.models.Account
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -37,7 +38,7 @@ class AccountsViewModel(): ViewModel(), KoinComponent {
                         AccountsState(isLoading = false, items = list, error = null)
                     }
                     .onStart { emit(AccountsState(isLoading = true)) }
-                    .catch { e -> emit(AccountsState(isLoading = false, error = e.message)) }
+                    .catch { e -> emit(AccountsState(isLoading = false, error = e.toFriendly())) }
             }
             .stateIn(
                 scope = viewModelScope,
@@ -45,9 +46,6 @@ class AccountsViewModel(): ViewModel(), KoinComponent {
                 initialValue = AccountsState(isLoading = true)
             )
 
-    init {
-        reload.tryEmit(Unit)
-    }
 
     fun load() = reload.tryEmit(Unit)
 
